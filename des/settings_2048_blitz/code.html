@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#574500",
+                    "inverse-primary": "#dbc2ab",
+                    "on-primary-container": "#fffbff",
+                    "on-surface": "#1d1b1a",
+                    "tile-gold": "#edc22e",
+                    "container-bg": "#bbada0",
+                    "text-primary": "#776E65",
+                    "inverse-surface": "#33302e",
+                    "primary-fixed": "#f8dec6",
+                    "on-error": "#ffffff",
+                    "tile-64": "#ff0000",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fff8f5",
+                    "surface-container": "#f3ede9",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dfd9d6",
+                    "text-bright": "#f9f6f2",
+                    "surface-variant": "#e7e1de",
+                    "surface-container-high": "#ede7e4",
+                    "on-error-container": "#93000a",
+                    "tile-8": "#f78e48",
+                    "surface-container-highest": "#e7e1de",
+                    "on-background": "#1d1b1a",
+                    "surface-bright": "#fff8f5",
+                    "tile-16": "#fc5e2e",
+                    "tertiary-fixed-dim": "#bcc8d3",
+                    "on-secondary-container": "#725b00",
+                    "on-tertiary-fixed": "#111d25",
+                    "on-secondary-fixed": "#241a00",
+                    "outline": "#7f756d",
+                    "page-bg": "#faf8ef",
+                    "on-tertiary-container": "#fcfcff",
+                    "tile-base": "#eee4da",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f6efec",
+                    "on-tertiary-fixed-variant": "#3d4851",
+                    "surface-container-low": "#f9f2ef",
+                    "tertiary-container": "#6a7680",
+                    "secondary-fixed-dim": "#edc22e",
+                    "on-primary-fixed": "#26190a",
+                    "on-primary-fixed-variant": "#554432",
+                    "primary": "#6b5946",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#dbc2ab",
+                    "secondary-container": "#ffd33f",
+                    "on-primary": "#ffffff",
+                    "surface": "#fff8f5",
+                    "surface-tint": "#6e5b48",
+                    "primary-container": "#85715d",
+                    "on-surface-variant": "#4e453e",
+                    "secondary": "#735c00",
+                    "tile-super": "#333333",
+                    "outline-variant": "#d1c4ba",
+                    "tertiary-fixed": "#d8e4ef",
+                    "tertiary": "#525d67",
+                    "tile-32": "#ff3333",
+                    "secondary-fixed": "#ffe088"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gap-mobile": "10px",
+                    "container-padding-desktop": "15px",
+                    "grid-gap-desktop": "15px",
+                    "container-padding-mobile": "10px",
+                    "margin-body-desktop": "80px",
+                    "margin-body-mobile": "20px"
+            },
+            "fontFamily": {
+                    "score-label": ["Plus Jakarta Sans"],
+                    "tile-default": ["Plus Jakarta Sans"],
+                    "score-value": ["Plus Jakarta Sans"],
+                    "tile-super": ["Plus Jakarta Sans"],
+                    "game-title-mobile": ["Plus Jakarta Sans"],
+                    "body-mobile": ["Plus Jakarta Sans"],
+                    "game-title": ["Plus Jakarta Sans"],
+                    "tile-4-digit": ["Plus Jakarta Sans"],
+                    "tile-3-digit": ["Plus Jakarta Sans"],
+                    "body-base": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "score-label": ["13px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "tile-default": ["55px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "score-value": ["25px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "tile-super": ["30px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "game-title-mobile": ["27px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "body-mobile": ["15px", {"lineHeight": "1.65", "fontWeight": "400"}],
+                    "game-title": ["80px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "tile-4-digit": ["35px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "tile-3-digit": ["45px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-base": ["18px", {"lineHeight": "1.65", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #faf8ef;
+            color: #776E65;
+        }
+    </style>
+</head>
+<body class="font-body-base text-body-base min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-stone-50 dark:bg-stone-950 border-b-0 fixed top-0 left-0 right-0 z-50">
+<div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#8f7a66] dark:text-[#a69380] font-['Plus_Jakarta_Sans'] tracking-tight">
+                2048 Blitz
+            </div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Classic</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Blitz</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Leaderboard</a>
+<a class="text-[#8f7a66] dark:text-[#a69380] border-b-2 border-[#8f7a66] pb-1 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors duration-200 p-2 rounded-full scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-stone-600 dark:text-stone-400" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-4 py-32 md:py-40">
+<div class="max-w-md w-full">
+<div class="bg-container-bg rounded-xl p-8 shadow-none border-0 space-y-8">
+<div class="text-center space-y-2">
+<h1 class="font-game-title-mobile text-game-title-mobile text-text-bright uppercase tracking-wider">Settings</h1>
+<div class="h-1 w-12 bg-tile-gold mx-auto rounded-full"></div>
+</div>
+<!-- Settings Controls -->
+<div class="space-y-6">
+<!-- Toggle: Background Music -->
+<div class="flex items-center justify-between bg-surface-container-low/20 p-4 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-bright" data-icon="music_note">music_note</span>
+<span class="font-score-label text-score-label text-text-bright uppercase">Background Music</span>
+</div>
+<button aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-tile-gold focus:outline-none" role="switch">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Toggle: Sound Effects -->
+<div class="flex items-center justify-between bg-surface-container-low/20 p-4 rounded-lg">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-text-bright" data-icon="volume_up">volume_up</span>
+<span class="font-score-label text-score-label text-text-bright uppercase">Sound Effects</span>
+</div>
+<button aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-tile-8 focus:outline-none" role="switch">
+<span class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+</button>
+</div>
+<!-- Theme Selector -->
+<div class="space-y-3">
+<span class="font-score-label text-score-label text-text-bright uppercase block pl-1">Appearance</span>
+<div class="grid grid-cols-2 gap-3">
+<button class="flex items-center justify-center gap-2 bg-text-bright text-primary py-3 rounded-lg font-score-label text-score-label uppercase ring-2 ring-tile-gold">
+<span class="material-symbols-outlined text-sm" data-icon="light_mode">light_mode</span>
+                                Light Mode
+                            </button>
+<button class="flex items-center justify-center gap-2 bg-stone-800 text-stone-300 py-3 rounded-lg font-score-label text-score-label uppercase opacity-80 hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm" data-icon="dark_mode">dark_mode</span>
+                                Dark Mode
+                            </button>
+</div>
+</div>
+</div>
+<!-- Navigation Action -->
+<div class="pt-4">
+<button class="w-full bg-[#8f7a66] text-white h-[40px] px-[20px] rounded-lg font-score-label text-score-label uppercase tracking-widest flex items-center justify-center gap-2 scale-100 hover:scale-[1.02] active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm" data-icon="home">home</span>
+                        Back to Home
+                    </button>
+</div>
+</div>
+<!-- Subtle Decorative Info -->
+<div class="mt-8 text-center">
+<p class="font-body-mobile text-body-mobile text-text-primary italic opacity-60">Version 2.4.0 (Blitz Edition)</p>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto gap-4">
+<div class="text-sm font-bold text-stone-400 font-['Plus_Jakarta_Sans'] uppercase tracking-widest">
+                © 2024 2048 Blitz. Tactile Precision Gaming.
+            </div>
+<div class="flex gap-6">
+<a class="text-stone-400 hover:text-stone-600 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest hover:underline transition-all opacity-80 hover:opacity-100" href="#">How to Play</a>
+<a class="text-stone-400 hover:text-stone-600 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest hover:underline transition-all opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="text-stone-400 hover:text-stone-600 font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest hover:underline transition-all opacity-80 hover:opacity-100" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

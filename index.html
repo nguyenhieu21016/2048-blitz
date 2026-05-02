@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>2048 Blitz</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#574500",
+                        "inverse-primary": "#dbc2ab",
+                        "on-primary-container": "#fffbff",
+                        "on-surface": "var(--color-on-surface)",
+                        "tile-gold": "#edc22e",
+                        "container-bg": "var(--color-container-bg)",
+                        "text-primary": "var(--color-text-primary)",
+                        "inverse-surface": "#33302e",
+                        "primary-fixed": "#f8dec6",
+                        "on-error": "#ffffff",
+                        "tile-64": "#ff0000",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "background": "var(--color-page-bg)",
+                        "surface-container": "var(--color-surface-container)",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dfd9d6",
+                        "text-bright": "var(--color-text-bright)",
+                        "surface-variant": "var(--color-surface-variant)",
+                        "surface-container-high": "var(--color-surface-container)",
+                        "on-error-container": "#93000a",
+                        "tile-8": "#f78e48",
+                        "surface-container-highest": "var(--color-surface-variant)",
+                        "on-background": "var(--color-on-surface)",
+                        "surface-bright": "var(--color-page-bg)",
+                        "tile-16": "#fc5e2e",
+                        "tertiary-fixed-dim": "#bcc8d3",
+                        "on-secondary-container": "#725b00",
+                        "on-tertiary-fixed": "#111d25",
+                        "on-secondary-fixed": "#241a00",
+                        "outline": "#7f756d",
+                        "page-bg": "var(--color-page-bg)",
+                        "on-tertiary-container": "#fcfcff",
+                        "tile-base": "var(--color-tile-base)",
+                        "tile-4": "var(--color-tile-4)",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f6efec",
+                        "on-tertiary-fixed-variant": "#3d4851",
+                        "surface-container-low": "var(--color-surface-container)",
+                        "tertiary-container": "#6a7680",
+                        "secondary-fixed-dim": "#edc22e",
+                        "on-primary-fixed": "#26190a",
+                        "on-primary-fixed-variant": "#554432",
+                        "primary": "var(--color-primary)",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#dbc2ab",
+                        "secondary-container": "#ffd33f",
+                        "on-primary": "#ffffff",
+                        "surface": "var(--color-page-bg)",
+                        "surface-tint": "#6e5b48",
+                        "primary-container": "#85715d",
+                        "on-surface-variant": "var(--color-on-surface)",
+                        "secondary": "#735c00",
+                        "tile-super": "#333333",
+                        "outline-variant": "var(--color-surface-variant)",
+                        "tertiary-fixed": "#d8e4ef",
+                        "tertiary": "#525d67",
+                        "tile-32": "#ff3333",
+                        "secondary-fixed": "#ffe088"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-gap-mobile": "10px",
+                        "container-padding-desktop": "15px",
+                        "grid-gap-desktop": "15px",
+                        "container-padding-mobile": "10px",
+                        "margin-body-desktop": "80px",
+                        "margin-body-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "score-label": ["Plus Jakarta Sans"],
+                        "tile-default": ["Plus Jakarta Sans"],
+                        "score-value": ["Plus Jakarta Sans"],
+                        "tile-super": ["Plus Jakarta Sans"],
+                        "game-title-mobile": ["Plus Jakarta Sans"],
+                        "body-mobile": ["Plus Jakarta Sans"],
+                        "game-title": ["Plus Jakarta Sans"],
+                        "tile-4-digit": ["Plus Jakarta Sans"],
+                        "tile-3-digit": ["Plus Jakarta Sans"],
+                        "body-base": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "score-label": ["13px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "tile-default": ["55px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "score-value": ["25px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "tile-super": ["30px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "game-title-mobile": ["27px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "body-mobile": ["15px", {"lineHeight": "1.65", "fontWeight": "400"}],
+                        "game-title": ["80px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "tile-4-digit": ["35px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "tile-3-digit": ["45px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-base": ["18px", {"lineHeight": "1.65", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-page-bg text-on-surface selection:bg-primary/20 min-h-screen flex flex-col font-body-base transition-colors duration-300">
+    <audio id="audio-bgm" src="background_music.mp3" loop></audio>
+    <audio id="audio-hit" src="hit.wav"></audio>
+
+    <!-- Shared TopAppBar -->
+    <header class="bg-stone-50 dark:bg-[#0c0a09] border-b-0 sticky top-0 z-50">
+        <div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+            <div class="text-2xl font-black text-[#8f7a66] dark:text-[#a69380] font-['Plus_Jakarta_Sans'] tracking-tight cursor-pointer" id="logo">
+                2048 Blitz
+            </div>
+            <nav class="hidden md:flex gap-8 items-center font-['Plus_Jakarta_Sans'] font-semibold tracking-tight">
+                <a class="nav-link text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#" id="nav-classic">Classic</a>
+                <a class="nav-link text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#" id="nav-blitz">Blitz</a>
+                <a class="nav-link text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#" id="nav-leaderboard">Leaderboard</a>
+                <a class="nav-link text-stone-500 dark:text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#" id="nav-settings">Settings</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="p-2 rounded-full hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors duration-200 scale-95 active:scale-90 transition-transform">
+                    <span class="material-symbols-outlined text-stone-600 dark:text-stone-400">account_circle</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- HOME SCREEN -->
+    <main id="home-screen" class="screen flex-grow flex flex-col items-center justify-center px-6 py-margin-body-mobile md:py-margin-body-desktop">
+        <div class="text-center mb-12 space-y-4">
+            <h1 class="font-game-title text-game-title-mobile md:text-game-title text-primary tracking-tight">2048 Blitz</h1>
+            <p class="font-body-base text-body-mobile md:text-body-base text-text-primary max-w-lg mx-auto">
+                The definitive tactical puzzle experience. Master the grid in classic mode or race against the clock in blitz mode.
+            </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-12">
+            <button id="btn-play-classic" class="group relative overflow-hidden bg-tile-base dark:bg-surface-container rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 active:scale-95">
+                <div class="w-16 h-16 bg-container-bg dark:bg-stone-700 rounded-lg flex items-center justify-center mb-6 text-text-bright">
+                    <span class="material-symbols-outlined text-4xl">grid_4x4</span>
+                </div>
+                <h3 class="text-score-value font-score-value text-on-surface mb-2">Classic</h3>
+                <p class="text-score-label font-score-label text-text-primary uppercase">Endless Puzzle Strategy</p>
+                <div class="mt-6 px-6 py-2 bg-primary text-text-bright rounded-lg font-bold transition-colors group-hover:brightness-110">Play Classic</div>
+            </button>
+            <button id="btn-play-blitz" class="group relative overflow-hidden bg-secondary-fixed dark:bg-surface-container rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/10 active:scale-95">
+                <div class="w-16 h-16 bg-on-secondary-fixed-variant rounded-lg flex items-center justify-center mb-6 text-text-bright">
+                    <span class="material-symbols-outlined text-4xl">bolt</span>
+                </div>
+                <h3 class="text-score-value font-score-value text-on-surface mb-2">Blitz</h3>
+                <p class="text-score-label font-score-label text-text-primary uppercase">High-Speed Challenge</p>
+                <div class="mt-6 px-6 py-2 bg-secondary text-text-bright rounded-lg font-bold transition-colors group-hover:brightness-110">Start Blitz</div>
+            </button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 w-full max-w-3xl">
+            <button id="btn-home-leaderboard" class="flex items-center gap-2 px-6 py-3 bg-stone-200 dark:bg-stone-800 rounded-full text-stone-700 dark:text-stone-300 font-bold transition-all hover:bg-stone-300 dark:hover:bg-stone-700 active:scale-95">
+                <span class="material-symbols-outlined">leaderboard</span> Leaderboard
+            </button>
+            <button id="btn-home-settings" class="flex items-center gap-2 px-6 py-3 bg-stone-200 dark:bg-stone-800 rounded-full text-stone-700 dark:text-stone-300 font-bold transition-all hover:bg-stone-300 dark:hover:bg-stone-700 active:scale-95">
+                <span class="material-symbols-outlined">settings</span> Settings
+            </button>
+        </div>
+    </main>
+
+    <!-- BLITZ CONFIG SCREEN -->
+    <main id="blitz-config-screen" class="screen hidden flex-grow flex items-center justify-center px-4 py-margin-body-mobile md:py-margin-body-desktop">
+        <div class="w-full max-w-xl">
+            <div class="text-center mb-10">
+                <h1 class="font-game-title text-game-title-mobile md:text-game-title text-primary mb-2">Blitz Mode Configuration</h1>
+                <p class="text-on-surface-variant font-body-base opacity-75">Prepare for the ultimate speed challenge.</p>
+            </div>
+            <div class="bg-surface-container p-8 md:p-12 rounded-xl border border-outline-variant shadow-sm">
+                <div class="mb-12">
+                    <div class="flex items-center justify-between mb-6">
+                        <span class="font-score-label text-score-label uppercase tracking-wider text-text-primary">Spawn Interval</span>
+                        <div class="bg-container-bg px-4 py-1 rounded-lg">
+                            <span class="font-score-value text-score-value text-text-bright" id="interval-display">3s</span>
+                        </div>
+                    </div>
+                    <div class="relative pt-1">
+                        <input id="blitz-interval-slider" class="w-full h-2 bg-outline-variant rounded-lg appearance-none cursor-pointer accent-primary" max="3" min="0" step="1" type="range" value="1"/>
+                        <div class="flex justify-between mt-4 px-1">
+                            <span class="text-xs font-bold text-outline">2s</span>
+                            <span class="text-xs font-bold text-outline">3s</span>
+                            <span class="text-xs font-bold text-outline">5s</span>
+                            <span class="text-xs font-bold text-outline">10s</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <button id="btn-start-blitz" class="h-[40px] px-5 bg-primary text-text-bright font-bold rounded-lg hover:brightness-110 active:scale-95 transition-all w-full flex items-center justify-center gap-2">
+                        Start Game <span class="material-symbols-outlined text-[20px]">play_arrow</span>
+                    </button>
+                    <button id="btn-back-home" class="h-[40px] px-5 bg-surface-variant text-on-surface font-bold rounded-lg hover:brightness-95 active:scale-95 transition-all w-full flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[20px]">arrow_back</span> Back
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- GAME SCREEN -->
+    <main id="game-screen" class="screen hidden max-w-xl mx-auto px-margin-body-mobile md:px-0 py-8 md:py-margin-body-desktop flex-grow w-full">
+        <div class="flex flex-col gap-6 mb-8">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h1 class="font-game-title text-game-title-mobile md:text-game-title text-primary tracking-tighter leading-none">2048</h1>
+                    <p class="font-score-label text-score-label uppercase tracking-widest text-text-primary mt-2" id="game-mode-label">Classic Mode</p>
+                </div>
+                <div class="flex gap-2">
+                    <div class="bg-container-bg rounded-lg min-w-[80px] p-2 flex flex-col items-center">
+                        <span class="font-score-label text-score-label text-text-bright uppercase">Score</span>
+                        <span class="font-score-value text-score-value text-white" id="current-score">0</span>
+                    </div>
+                    <div class="bg-container-bg rounded-lg min-w-[80px] p-2 flex flex-col items-center">
+                        <span class="font-score-label text-score-label text-text-bright uppercase">Best</span>
+                        <span class="font-score-value text-score-value text-white" id="best-score">0</span>
+                    </div>
+                </div>
+            </div>
+            <div id="blitz-timer-container" class="hidden w-full h-2 bg-container-bg/20 rounded-full overflow-hidden">
+                <div id="blitz-timer-bar" class="h-full bg-tile-8 transition-all duration-100 ease-linear" style="width: 100%;"></div>
+            </div>
+            <div class="flex justify-between items-center">
+                <div class="max-w-[280px]">
+                    <p class="font-body-mobile text-body-mobile text-on-surface-variant">Join the numbers and get to the <span class="font-bold text-primary">2048 tile!</span></p>
+                </div>
+                <div class="flex gap-3">
+                    <button id="btn-restart" class="bg-primary text-text-bright font-score-label text-score-label px-5 py-2.5 rounded-[3px] scale-95 active:scale-90 transition-transform flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">refresh</span> Restart
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="main-game-board" class="bg-container-bg rounded-xl p-grid-gap-mobile md:p-grid-gap-desktop aspect-square w-full relative overflow-hidden">
+            <div class="grid grid-cols-4 grid-rows-4 gap-grid-gap-mobile md:gap-grid-gap-desktop h-full w-full">
+                <!-- Background cells -->
+                <div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div>
+                <div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div>
+                <div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div>
+                <div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div><div class="bg-tile-base/40 rounded-[3px]"></div>
+            </div>
+            <div class="tile-container absolute inset-[10px] md:inset-[15px] pointer-events-none" id="tile-container">
+                <!-- Tiles injected here -->
+            </div>
+            
+            <!-- Game Over Overlay -->
+            <div id="game-message" class="hidden absolute inset-0 z-50 flex items-center justify-center p-6 bg-page-bg/80 backdrop-blur-sm">
+                <div class="bg-page-bg w-full max-w-sm rounded-xl border-4 border-container-bg flex flex-col items-center py-10 px-8 text-center shadow-2xl">
+                    <h2 class="text-on-surface font-game-title text-[48px] leading-tight mb-2" id="game-message-text">Game Over!</h2>
+                    <div class="mb-8">
+                        <p class="text-text-primary font-score-label uppercase tracking-widest mb-1">Final Score</p>
+                        <p class="text-on-surface font-bold text-5xl font-['Plus_Jakarta_Sans']" id="final-score-display">0</p>
+                    </div>
+                    <div class="w-full space-y-4">
+                        <div class="space-y-2">
+                            <label class="block text-left text-xs font-bold text-text-primary uppercase tracking-tight px-1" for="player-name">Enter your name</label>
+                            <input class="w-full h-12 bg-surface-container rounded-lg border-2 border-outline-variant px-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-semibold text-on-surface" id="player-name" placeholder="BlitzMaster" type="text"/>
+                        </div>
+                        <button id="btn-save-score" class="w-full h-[48px] bg-primary text-text-bright font-bold rounded-lg flex items-center justify-center gap-2 hover:brightness-110 active:scale-[0.98] transition-all">
+                            <span>Save to Leaderboard</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 w-full mt-10">
+                        <button id="btn-try-again" class="h-[44px] bg-container-bg text-text-bright font-bold rounded-lg hover:brightness-110 active:scale-[0.98] transition-all">Play Again</button>
+                        <button id="btn-quit" class="h-[44px] border-2 border-container-bg text-on-surface font-bold rounded-lg hover:bg-container-bg/10 active:scale-[0.98] transition-all">Home</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 flex justify-center items-center gap-6">
+            <button class="flex items-center gap-2 font-score-label text-score-label text-text-primary hover:text-primary transition-colors group btn-back-home">
+                <span class="material-symbols-outlined text-lg">home</span> Back to Home
+            </button>
+            <div class="h-4 w-[1px] bg-outline-variant"></div>
+            <button class="flex items-center gap-2 font-score-label text-score-label text-text-primary hover:text-primary transition-colors btn-go-leaderboard">
+                <span class="material-symbols-outlined text-lg">leaderboard</span> Leaderboard
+            </button>
+        </div>
+    </main>
+
+    <!-- LEADERBOARD SCREEN -->
+    <main id="leaderboard-screen" class="screen hidden max-w-4xl mx-auto px-6 py-12 md:py-margin-body-desktop min-h-[calc(100vh-128px)] w-full">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <div>
+                <h1 class="font-game-title text-game-title-mobile md:text-game-title text-on-surface mb-2">Hall of Fame</h1>
+                <p class="text-text-primary font-body-base">Compete with the best tacticians worldwide.</p>
+            </div>
+            <button class="inline-flex items-center gap-2 bg-primary text-text-bright px-5 h-10 rounded-[3px] font-score-label text-score-label hover:brightness-110 transition-all scale-95 active:scale-90 uppercase btn-back-home">
+                <span class="material-symbols-outlined text-[18px]">arrow_back</span> Back to Home
+            </button>
+        </div>
+        <div class="flex gap-1 bg-surface-variant/50 p-1 rounded-lg mb-8 w-fit">
+            <button class="tab-btn px-6 py-2 font-score-label text-score-label rounded-md transition-all active uppercase" data-tab="classic">Classic</button>
+            <button class="tab-btn px-6 py-2 font-score-label text-score-label rounded-md text-text-primary hover:bg-surface-variant transition-all uppercase" data-tab="blitz">Blitz</button>
+        </div>
+        <div class="bg-container-bg rounded-xl p-3 md:p-container-padding-desktop">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-separate border-spacing-y-2">
+                    <thead>
+                        <tr class="font-score-label text-score-label text-white/80 uppercase">
+                            <th class="px-6 py-4">Rank</th>
+                            <th class="px-6 py-4">Name</th>
+                            <th class="px-6 py-4" id="leaderboard-extra-col">Mode Info</th>
+                            <th class="px-6 py-4 text-right">Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-content" class="font-tile-default">
+                        <!-- Content injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- SETTINGS SCREEN -->
+    <main id="settings-screen" class="screen hidden flex-grow flex items-center justify-center px-4 py-32 md:py-40 w-full">
+        <div class="max-w-md w-full">
+            <div class="bg-container-bg rounded-xl p-8 shadow-none border-0 space-y-8">
+                <div class="text-center space-y-2">
+                    <h1 class="font-game-title-mobile text-game-title-mobile text-text-bright uppercase tracking-wider">Settings</h1>
+                    <div class="h-1 w-12 bg-tile-gold mx-auto rounded-full"></div>
+                </div>
+                <div class="space-y-6">
+                    <div class="flex items-center justify-between bg-surface-container-low/20 p-4 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-text-bright">music_note</span>
+                            <span class="font-score-label text-score-label text-text-bright uppercase">Music</span>
+                        </div>
+                        <button id="toggle-bgm" aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-tile-gold focus:outline-none" role="switch">
+                            <span id="bgm-slider" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between bg-surface-container-low/20 p-4 rounded-lg">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-text-bright">volume_up</span>
+                            <span class="font-score-label text-score-label text-text-bright uppercase">SFX</span>
+                        </div>
+                        <button id="toggle-sfx" aria-checked="true" class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out bg-tile-8 focus:outline-none" role="switch">
+                            <span id="sfx-slider" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow transition duration-200 ease-in-out"></span>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        <span class="font-score-label text-score-label text-text-bright uppercase block pl-1">Appearance</span>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button id="btn-theme-light" class="flex items-center justify-center gap-2 bg-text-bright text-primary py-3 rounded-lg font-score-label text-score-label uppercase ring-2 ring-tile-gold">
+                                <span class="material-symbols-outlined text-sm">light_mode</span> Light
+                            </button>
+                            <button id="btn-theme-dark" class="flex items-center justify-center gap-2 bg-stone-800 text-stone-300 py-3 rounded-lg font-score-label text-score-label uppercase opacity-80 hover:opacity-100 transition-opacity">
+                                <span class="material-symbols-outlined text-sm">dark_mode</span> Dark
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="pt-4">
+                    <button class="w-full bg-primary text-text-bright h-[40px] px-[20px] rounded-lg font-score-label text-score-label uppercase tracking-widest flex items-center justify-center gap-2 scale-100 hover:scale-[1.02] active:scale-95 transition-transform btn-back-home">
+                        <span class="material-symbols-outlined text-sm">home</span> Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-stone-50 dark:bg-[#0c0a09] border-t border-stone-200 dark:border-stone-800 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto gap-4">
+            <div class="text-sm font-bold text-stone-400 uppercase tracking-widest font-['Plus_Jakarta_Sans']">2048 Blitz</div>
+            <div class="text-stone-500 dark:text-stone-500 text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans'] text-center">© 2024 2048 Blitz. Tactile Precision Gaming.</div>
+            <nav class="flex gap-6">
+                <a class="text-stone-400 hover:text-stone-600 transition-all hover:underline text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans']" href="#">Privacy</a>
+                <a class="text-stone-400 hover:text-stone-600 transition-all hover:underline text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans']" href="#">Terms</a>
+            </nav>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

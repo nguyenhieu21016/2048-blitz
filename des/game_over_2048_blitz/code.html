@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#574500",
+                    "inverse-primary": "#dbc2ab",
+                    "on-primary-container": "#fffbff",
+                    "on-surface": "#1d1b1a",
+                    "tile-gold": "#edc22e",
+                    "container-bg": "#bbada0",
+                    "text-primary": "#776E65",
+                    "inverse-surface": "#33302e",
+                    "primary-fixed": "#f8dec6",
+                    "on-error": "#ffffff",
+                    "tile-64": "#ff0000",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "background": "#fff8f5",
+                    "surface-container": "#f3ede9",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#dfd9d6",
+                    "text-bright": "#f9f6f2",
+                    "surface-variant": "#e7e1de",
+                    "surface-container-high": "#ede7e4",
+                    "on-error-container": "#93000a",
+                    "tile-8": "#f78e48",
+                    "surface-container-highest": "#e7e1de",
+                    "on-background": "#1d1b1a",
+                    "surface-bright": "#fff8f5",
+                    "tile-16": "#fc5e2e",
+                    "tertiary-fixed-dim": "#bcc8d3",
+                    "on-secondary-container": "#725b00",
+                    "on-tertiary-fixed": "#111d25",
+                    "on-secondary-fixed": "#241a00",
+                    "outline": "#7f756d",
+                    "page-bg": "#faf8ef",
+                    "on-tertiary-container": "#fcfcff",
+                    "tile-base": "#eee4da",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f6efec",
+                    "on-tertiary-fixed-variant": "#3d4851",
+                    "surface-container-low": "#f9f2ef",
+                    "tertiary-container": "#6a7680",
+                    "secondary-fixed-dim": "#edc22e",
+                    "on-primary-fixed": "#26190a",
+                    "on-primary-fixed-variant": "#554432",
+                    "primary": "#6b5946",
+                    "on-secondary": "#ffffff",
+                    "primary-fixed-dim": "#dbc2ab",
+                    "secondary-container": "#ffd33f",
+                    "on-primary": "#ffffff",
+                    "surface": "#fff8f5",
+                    "surface-tint": "#6e5b48",
+                    "primary-container": "#85715d",
+                    "on-surface-variant": "#4e453e",
+                    "secondary": "#735c00",
+                    "tile-super": "#333333",
+                    "outline-variant": "#d1c4ba",
+                    "tertiary-fixed": "#d8e4ef",
+                    "tertiary": "#525d67",
+                    "tile-32": "#ff3333",
+                    "secondary-fixed": "#ffe088"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gap-mobile": "10px",
+                    "container-padding-desktop": "15px",
+                    "grid-gap-desktop": "15px",
+                    "container-padding-mobile": "10px",
+                    "margin-body-desktop": "80px",
+                    "margin-body-mobile": "20px"
+            },
+            "fontFamily": {
+                    "score-label": ["Plus Jakarta Sans"],
+                    "tile-default": ["Plus Jakarta Sans"],
+                    "score-value": ["Plus Jakarta Sans"],
+                    "tile-super": ["Plus Jakarta Sans"],
+                    "game-title-mobile": ["Plus Jakarta Sans"],
+                    "body-mobile": ["Plus Jakarta Sans"],
+                    "game-title": ["Plus Jakarta Sans"],
+                    "tile-4-digit": ["Plus Jakarta Sans"],
+                    "tile-3-digit": ["Plus Jakarta Sans"],
+                    "body-base": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "score-label": ["13px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "tile-default": ["55px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "score-value": ["25px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "tile-super": ["30px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "game-title-mobile": ["27px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "body-mobile": ["15px", {"lineHeight": "1.65", "fontWeight": "400"}],
+                    "game-title": ["80px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "tile-4-digit": ["35px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "tile-3-digit": ["45px", {"lineHeight": "1", "fontWeight": "700"}],
+                    "body-base": ["18px", {"lineHeight": "1.65", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .modal-overlay {
+            background-color: rgba(250, 248, 239, 0.85);
+            backdrop-filter: blur(4px);
+        }
+        .tile-pop {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-page-bg min-h-screen flex flex-col font-body-base text-on-background">
+<!-- Top Navigation Header -->
+<header class="bg-stone-50 dark:bg-stone-950 sticky top-0 z-40">
+<div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#8f7a66] dark:text-[#a69380] font-['Plus_Jakarta_Sans'] tracking-tight">
+                2048 Blitz
+            </div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#8f7a66] dark:text-[#a69380] border-b-2 border-[#8f7a66] pb-1 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight" href="#">Blitz</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Classic</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Leaderboard</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 font-['Plus_Jakarta_Sans'] font-semibold tracking-tight transition-colors duration-200" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-stone-600 hover:bg-stone-200/50 p-2 rounded-full transition-colors scale-95 active:scale-90">account_circle</button>
+</div>
+</div>
+</header>
+<main class="flex-grow relative flex items-center justify-center py-margin-body-mobile md:py-margin-body-desktop">
+<!-- Background Game Board (Simulated Visual Context) -->
+<div class="max-w-md w-full px-4 filter blur-[2px] opacity-40 select-none pointer-events-none">
+<div class="flex justify-between items-end mb-8">
+<div>
+<h1 class="font-game-title text-game-title-mobile md:text-game-title text-text-primary">2048</h1>
+</div>
+<div class="flex gap-2">
+<div class="bg-container-bg rounded-lg p-3 text-center min-w-[80px]">
+<div class="text-score-label font-score-label text-text-bright uppercase">Score</div>
+<div class="text-score-value font-score-value text-white">14,208</div>
+</div>
+<div class="bg-container-bg rounded-lg p-3 text-center min-w-[80px]">
+<div class="text-score-label font-score-label text-text-bright uppercase">Best</div>
+<div class="text-score-value font-score-value text-white">28,440</div>
+</div>
+</div>
+</div>
+<!-- The Grid -->
+<div class="bg-container-bg p-grid-gap-mobile md:p-grid-gap-desktop rounded-xl aspect-square grid grid-cols-4 grid-rows-4 gap-grid-gap-mobile md:gap-grid-gap-desktop">
+<div class="bg-tile-base rounded-lg flex items-center justify-center text-tile-default font-tile-default text-text-primary">2</div>
+<div class="bg-[#ede0c8] rounded-lg flex items-center justify-center text-tile-default font-tile-default text-text-primary">4</div>
+<div class="bg-tile-8 rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white">8</div>
+<div class="bg-tile-16 rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-3xl">16</div>
+<div class="bg-tile-32 rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-3xl">32</div>
+<div class="bg-tile-64 rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-3xl">64</div>
+<div class="bg-[#edcf72] rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-2xl">128</div>
+<div class="bg-[#edcc61] rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-2xl">256</div>
+<div class="bg-[#edc850] rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-2xl">512</div>
+<div class="bg-tile-gold rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-xl">1024</div>
+<div class="bg-tile-gold rounded-lg flex items-center justify-center text-tile-default font-tile-default text-white text-xl">2048</div>
+<div class="bg-tile-super rounded-lg flex items-center justify-center text-tile-super font-tile-super text-white">4096</div>
+<div class="bg-tile-base opacity-20 rounded-lg"></div>
+<div class="bg-tile-base opacity-20 rounded-lg"></div>
+<div class="bg-tile-base opacity-20 rounded-lg"></div>
+<div class="bg-tile-base opacity-20 rounded-lg"></div>
+</div>
+</div>
+<!-- Game Over Modal Overlay -->
+<div class="absolute inset-0 z-50 flex items-center justify-center p-6 modal-overlay">
+<div class="bg-page-bg w-full max-w-sm rounded-xl border-4 border-container-bg flex flex-col items-center py-10 px-8 text-center animate-in fade-in zoom-in duration-300">
+<h2 class="text-text-primary font-game-title text-[48px] leading-tight mb-2">Game Over!</h2>
+<div class="mb-8">
+<p class="text-on-surface-variant font-score-label uppercase tracking-widest mb-1">Final Score</p>
+<p class="text-text-primary font-bold text-5xl font-['Plus_Jakarta_Sans']">14,208</p>
+</div>
+<div class="w-full space-y-4">
+<div class="space-y-2">
+<label class="block text-left text-xs font-bold text-on-surface-variant uppercase tracking-tight px-1" for="player-name">Enter your name</label>
+<input class="w-full h-12 bg-surface-container rounded-lg border-2 border-outline-variant px-4 focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all font-semibold text-text-primary" id="player-name" placeholder="BlitzMaster" type="text"/>
+</div>
+<button class="w-full h-[48px] bg-primary text-white font-bold rounded-lg flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all">
+<span>Save to Leaderboard</span>
+</button>
+<!-- Interaction State Showcase (Visible in UI flow) -->
+<button class="w-full h-[48px] bg-secondary text-on-secondary font-bold rounded-lg flex items-center justify-center gap-2 cursor-default border-2 border-secondary-container">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Saved! ✓</span>
+</button>
+</div>
+<div class="grid grid-cols-2 gap-4 w-full mt-10">
+<button class="h-[44px] bg-container-bg text-white font-bold rounded-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                        Play Again
+                    </button>
+<button class="h-[44px] border-2 border-container-bg text-text-primary font-bold rounded-lg hover:bg-container-bg/10 active:scale-[0.98] transition-all">
+                        Home
+                    </button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto gap-4">
+<div class="text-sm font-bold text-stone-400">© 2024 2048 Blitz. Tactile Precision Gaming.</div>
+<div class="flex gap-6">
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-stone-400 hover:text-stone-600 hover:underline transition-all opacity-80 hover:opacity-100" href="#">How to Play</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-stone-400 hover:text-stone-600 hover:underline transition-all opacity-80 hover:opacity-100" href="#">Privacy</a>
+<a class="font-['Plus_Jakarta_Sans'] text-xs uppercase tracking-widest text-stone-400 hover:text-stone-600 hover:underline transition-all opacity-80 hover:opacity-100" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

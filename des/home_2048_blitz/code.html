@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed-variant": "#574500",
+                        "inverse-primary": "#dbc2ab",
+                        "on-primary-container": "#fffbff",
+                        "on-surface": "#1d1b1a",
+                        "tile-gold": "#edc22e",
+                        "container-bg": "#bbada0",
+                        "text-primary": "#776E65",
+                        "inverse-surface": "#33302e",
+                        "primary-fixed": "#f8dec6",
+                        "on-error": "#ffffff",
+                        "tile-64": "#ff0000",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "background": "#fff8f5",
+                        "surface-container": "#f3ede9",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dfd9d6",
+                        "text-bright": "#f9f6f2",
+                        "surface-variant": "#e7e1de",
+                        "surface-container-high": "#ede7e4",
+                        "on-error-container": "#93000a",
+                        "tile-8": "#f78e48",
+                        "surface-container-highest": "#e7e1de",
+                        "on-background": "#1d1b1a",
+                        "surface-bright": "#fff8f5",
+                        "tile-16": "#fc5e2e",
+                        "tertiary-fixed-dim": "#bcc8d3",
+                        "on-secondary-container": "#725b00",
+                        "on-tertiary-fixed": "#111d25",
+                        "on-secondary-fixed": "#241a00",
+                        "outline": "#7f756d",
+                        "page-bg": "#faf8ef",
+                        "on-tertiary-container": "#fcfcff",
+                        "tile-base": "#eee4da",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f6efec",
+                        "on-tertiary-fixed-variant": "#3d4851",
+                        "surface-container-low": "#f9f2ef",
+                        "tertiary-container": "#6a7680",
+                        "secondary-fixed-dim": "#edc22e",
+                        "on-primary-fixed": "#26190a",
+                        "on-primary-fixed-variant": "#554432",
+                        "primary": "#6b5946",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed-dim": "#dbc2ab",
+                        "secondary-container": "#ffd33f",
+                        "on-primary": "#ffffff",
+                        "surface": "#fff8f5",
+                        "surface-tint": "#6e5b48",
+                        "primary-container": "#85715d",
+                        "on-surface-variant": "#4e453e",
+                        "secondary": "#735c00",
+                        "tile-super": "#333333",
+                        "outline-variant": "#d1c4ba",
+                        "tertiary-fixed": "#d8e4ef",
+                        "tertiary": "#525d67",
+                        "tile-32": "#ff3333",
+                        "secondary-fixed": "#ffe088"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-gap-mobile": "10px",
+                        "container-padding-desktop": "15px",
+                        "grid-gap-desktop": "15px",
+                        "container-padding-mobile": "10px",
+                        "margin-body-desktop": "80px",
+                        "margin-body-mobile": "20px"
+                    },
+                    "fontFamily": {
+                        "score-label": ["Plus Jakarta Sans"],
+                        "tile-default": ["Plus Jakarta Sans"],
+                        "score-value": ["Plus Jakarta Sans"],
+                        "tile-super": ["Plus Jakarta Sans"],
+                        "game-title-mobile": ["Plus Jakarta Sans"],
+                        "body-mobile": ["Plus Jakarta Sans"],
+                        "game-title": ["Plus Jakarta Sans"],
+                        "tile-4-digit": ["Plus Jakarta Sans"],
+                        "tile-3-digit": ["Plus Jakarta Sans"],
+                        "body-base": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "score-label": ["13px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "tile-default": ["55px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "score-value": ["25px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "tile-super": ["30px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "game-title-mobile": ["27px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "body-mobile": ["15px", {"lineHeight": "1.65", "fontWeight": "400"}],
+                        "game-title": ["80px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "tile-4-digit": ["35px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "tile-3-digit": ["45px", {"lineHeight": "1", "fontWeight": "700"}],
+                        "body-base": ["18px", {"lineHeight": "1.65", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #faf8ef;
+        }
+    </style>
+</head>
+<body class="bg-page-bg text-on-surface selection:bg-primary/20">
+<!-- TopAppBar -->
+<header class="bg-stone-50 dark:bg-stone-950 border-b-0 sticky top-0 z-50">
+<div class="flex justify-between items-center h-16 px-6 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-[#8f7a66] dark:text-[#a69380] font-['Plus_Jakarta_Sans'] tracking-tight">
+                2048 Blitz
+            </div>
+<nav class="hidden md:flex gap-8 items-center font-['Plus_Jakarta_Sans'] font-semibold tracking-tight text-stone-600 dark:text-stone-400">
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#">Classic</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#">Blitz</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#">Leaderboard</a>
+<a class="text-stone-500 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-colors duration-200" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-stone-200/50 dark:hover:bg-stone-800/50 transition-colors duration-200 scale-95 active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-stone-600 dark:text-stone-400">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<main class="min-h-[calc(100vh-128px)] flex flex-col items-center justify-center px-6 py-margin-body-mobile md:py-margin-body-desktop">
+<!-- Hero Section -->
+<div class="text-center mb-12 space-y-4">
+<h1 class="font-game-title text-game-title-mobile md:text-game-title text-[#8f7a66] tracking-tight">
+                2048 Blitz
+            </h1>
+<p class="font-body-base text-body-mobile md:text-body-base text-text-primary max-w-lg mx-auto">
+                The definitive tactical puzzle experience. Master the grid in classic mode or race against the clock in blitz mode.
+            </p>
+</div>
+<!-- Mode Selection Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mb-12">
+<!-- Classic Mode Card -->
+<button class="group relative overflow-hidden bg-tile-base rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 active:scale-95">
+<div class="w-16 h-16 bg-container-bg rounded-lg flex items-center justify-center mb-6 text-text-bright">
+<span class="material-symbols-outlined text-4xl">grid_4x4</span>
+</div>
+<h3 class="text-score-value font-score-value text-text-primary mb-2">Classic</h3>
+<p class="text-score-label font-score-label text-text-primary/70 uppercase">Endless Puzzle Strategy</p>
+<div class="mt-6 px-6 py-2 bg-primary text-text-bright rounded-lg font-bold transition-colors group-hover:bg-[#8f7a66]">
+                    Play Classic
+                </div>
+</button>
+<!-- Blitz Mode Card -->
+<button class="group relative overflow-hidden bg-secondary-fixed rounded-xl p-8 flex flex-col items-center text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-secondary/10 active:scale-95">
+<div class="w-16 h-16 bg-on-secondary-fixed-variant rounded-lg flex items-center justify-center mb-6 text-text-bright">
+<span class="material-symbols-outlined text-4xl">bolt</span>
+</div>
+<h3 class="text-score-value font-score-value text-on-secondary-fixed-variant mb-2">Blitz</h3>
+<p class="text-score-label font-score-label text-on-secondary-fixed-variant/70 uppercase">High-Speed Challenge</p>
+<div class="mt-6 px-6 py-2 bg-secondary text-text-bright rounded-lg font-bold transition-colors group-hover:bg-on-secondary-fixed-variant">
+                    Start Blitz
+                </div>
+</button>
+</div>
+<!-- Secondary Actions Bento -->
+<div class="flex flex-wrap justify-center gap-4 w-full max-w-3xl">
+<button class="flex items-center gap-2 px-6 py-3 bg-stone-200 dark:bg-stone-800 rounded-full text-stone-700 dark:text-stone-300 font-bold transition-all hover:bg-stone-300 dark:hover:bg-stone-700 active:scale-95">
+<span class="material-symbols-outlined">leaderboard</span>
+                Leaderboard
+            </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-stone-200 dark:bg-stone-800 rounded-full text-stone-700 dark:text-stone-300 font-bold transition-all hover:bg-stone-300 dark:hover:bg-stone-700 active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </button>
+<button class="flex items-center gap-2 px-6 py-3 bg-stone-200 dark:bg-stone-800 rounded-full text-stone-700 dark:text-stone-300 font-bold transition-all hover:bg-stone-300 dark:hover:bg-stone-700 active:scale-95">
+<span class="material-symbols-outlined">help</span>
+                How to Play
+            </button>
+</div>
+<!-- Decorative Board Preview -->
+<div class="mt-20 opacity-20 pointer-events-none select-none hidden lg:block">
+<div class="grid grid-cols-4 gap-4 p-4 bg-container-bg rounded-xl">
+<div class="w-16 h-16 bg-tile-base rounded-lg flex items-center justify-center text-text-primary font-bold">2</div>
+<div class="w-16 h-16 bg-surface-variant rounded-lg flex items-center justify-center text-text-primary font-bold">4</div>
+<div class="w-16 h-16 bg-tile-8 rounded-lg flex items-center justify-center text-text-bright font-bold">8</div>
+<div class="w-16 h-16 bg-tile-base rounded-lg flex items-center justify-center text-text-primary font-bold">2</div>
+<div class="w-16 h-16 bg-tile-16 rounded-lg flex items-center justify-center text-text-bright font-bold">16</div>
+<div class="w-16 h-16 bg-tile-32 rounded-lg flex items-center justify-center text-text-bright font-bold">32</div>
+<div class="w-16 h-16 bg-tile-gold rounded-lg flex items-center justify-center text-text-bright font-bold">2048</div>
+<div class="w-16 h-16 bg-tile-64 rounded-lg flex items-center justify-center text-text-bright font-bold">64</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800 py-8">
+<div class="flex flex-col md:flex-row justify-between items-center px-6 max-w-7xl mx-auto gap-4">
+<div class="text-sm font-bold text-stone-400 uppercase tracking-widest font-['Plus_Jakarta_Sans']">
+                2048 Blitz
+            </div>
+<div class="text-stone-500 dark:text-stone-500 text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans'] text-center">
+                © 2024 2048 Blitz. Tactile Precision Gaming.
+            </div>
+<nav class="flex gap-6">
+<a class="text-stone-400 hover:text-stone-600 transition-all hover:underline text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans']" href="#">How to Play</a>
+<a class="text-stone-400 hover:text-stone-600 transition-all hover:underline text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans']" href="#">Privacy</a>
+<a class="text-stone-400 hover:text-stone-600 transition-all hover:underline text-xs uppercase tracking-widest font-['Plus_Jakarta_Sans']" href="#">Terms</a>
+</nav>
+</div>
+</footer>
+</body></html>
